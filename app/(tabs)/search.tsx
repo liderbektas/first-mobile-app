@@ -19,16 +19,16 @@ const Search = () => {
   } = useFetch(() => fetchMovies({ query: searchQuery }));
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const timeout = setTimeout(async () => {
       if (searchQuery.trim()) {
-        loadMovies();
+       await loadMovies();
       } else {
         reset();
       }
     }, 500);
 
     return () => clearTimeout(timeout);
-  }, [searchQuery, loadMovies, reset]);
+  }, [searchQuery]);
 
   return (
     <View className='flex-1 bg-primary'>
